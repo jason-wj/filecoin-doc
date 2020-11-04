@@ -26,12 +26,15 @@ export ROOT_PATH=$(pwd)
 # 外部触发指令
 # 用户级
 COMMAND_BLOTUS="blotus"
+COMMAND_ELOTUS="elotus"
 
 # 容器版本
 export IMAGE_BLOTUS="wujason/lotus-build-env:latest"
+export IMAGE_ELOTUS="wujason/lotus-exec-env:latest"
 
 # container：必须保留，当一个容器涉及到多个依赖时，方便选择加入
 export CONTAINER_BLOTUS=${PROJECT_NAME}"-"${COMMAND_BLOTUS}
+export CONTAINER_ELOTUS=${PROJECT_NAME}"-"${COMMAND_ELOTUS}
 
 # 根据不同项目模式切换镜像，同时
 if [[ ${PROJECT_MODE} == "prod" ]]; then
@@ -51,6 +54,14 @@ function push_one() {
 
 # 启动指定服务
 function start_one() {
+    case ${STATE} in
+        ${COMMAND_ELOTUS})
+            if [ ! -f "${ROOT_PATH}/data-server/filecoin-elotus/bin/lotus" ];then
+               mkdir ${ROOT_PATH}/data-server/filecoin-elotus/bin/
+               cp ${ROOT_PATH}/data-server/filecoin-blotus/lotus/{lotus,lotus-miner,lotus-seed,lotus-worker} ${ROOT_PATH}/data-server/filecoin-elotus/bin/
+            fi
+        ;;
+    esac
     docker-compose --log-level ERROR -f "${ROOT_PATH}"/${DOCKER_COMPOSE_FILE} up -d ${PROJECT_NAME}"-"${STATE}
 }
 
@@ -109,7 +120,7 @@ function release_one() {
 }
 
 function printHelp() {
-    echo "当前支持的指定服务：[blotus]"
+    echo "当前支持的指定服务：[blotus、elotus]"
     echo "./main.sh start [+操作码]：启动服务"
     echo "          [操作码]"
     echo "               指定服务：启动指定服务"

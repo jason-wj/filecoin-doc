@@ -12,3 +12,4 @@ filecoin相关，包括安装部署、原理文档等
 4. 确认进入容器目录：`/go/src/github.com/filecoin-project/lotus`
 5. 执行：`make build`或者`make clean debug`开始编译
 6. 等待编译，编译完成后，即可在主机的`data-server/filecoin-blouts/lotus/`中看到编译成功的三个文件：`lotus`、`lotus-miner`、`lotus-worker`
+7. 安装：`make install`

@@ -16,3 +16,19 @@ services:
       - $ROOT_PATH/data-server/${CONTAINER_BLOTUS}/lotus:/go/src/github.com/filecoin-project/lotus
     networks:
       base:
+
+  # 2. lotus运行环境
+  filecoin-elotus:
+    image: ${IMAGE_ELOTUS}
+    container_name: ${CONTAINER_ELOTUS}
+    stdin_open: true
+    tty: true
+    privileged: true
+    entrypoint: ["sh"]
+    volumes:
+      - $ROOT_PATH/data-server/${CONTAINER_ELOTUS}/bin:/lotus/bin/
+    ports:
+      - 1234:1234
+      - 1235:1235
+    networks:
+      base:
