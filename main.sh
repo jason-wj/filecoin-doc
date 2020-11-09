@@ -46,6 +46,11 @@ function logs_one() {
     docker logs -f ${PROJECT_NAME}"-"${STATE} --tail 15
 }
 
+# 进入容器
+function exec_one() {
+    docker exec -it ${PROJECT_NAME}"-"${STATE} /bin/bash
+}
+
 # 推送一个项目docker到仓库
 function push_one() {
   docker push ${PUSH_ROOT_REGISTRY}/${PROJECT_NAME}/${PROJECT_NAME}"-"${STATE}
@@ -57,7 +62,7 @@ function start_one() {
     case ${STATE} in
         ${COMMAND_ELOTUS})
             if [ ! -f "${ROOT_PATH}/data-server/filecoin-elotus/bin/lotus" ];then
-               mkdir ${ROOT_PATH}/data-server/filecoin-elotus/bin/
+               mkdir -p ${ROOT_PATH}/data-server/filecoin-elotus/bin/
                cp ${ROOT_PATH}/data-server/filecoin-blotus/lotus/{lotus,lotus-miner,lotus-seed,lotus-worker} ${ROOT_PATH}/data-server/filecoin-elotus/bin/
             fi
         ;;
@@ -143,6 +148,8 @@ case ${MODE} in
         start_one ;;
     "logs")
         logs_one ;;
+    "exec")
+        exec_one ;;
     "push")
         push_one ;;
     "release")
