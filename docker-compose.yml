@@ -12,10 +12,6 @@ services:
     tty: true
     privileged: true
     entrypoint: ["sh"]
-    environment:
-# #   这两个环境变量是在测试环境下编译时，针对amd和旧intel的配置
-      - CGO_CFLAGS_ALLOW="-D__BLST_PORTABLE__"
-      - CGO_CFLAGS="-D__BLST_PORTABLE__"
     volumes:
       - $ROOT_PATH/data-server/${CONTAINER_BLOTUS}/lotus:/go/src/github.com/filecoin-project/lotus
     networks:
