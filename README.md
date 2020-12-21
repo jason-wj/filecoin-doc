@@ -14,3 +14,7 @@ filecoin相关，包括安装部署、原理文档等
     * 注意：一定要加上：`/bin/bash -c "source /root/.cargo/env"`
 6. 等待编译，编译完成后，即可在主机的`data-server/filecoin-blouts/lotus/`中看到编译成功的三个文件：`lotus`、`lotus-miner`、`lotus-worker`
 7. 安装：`make install`
+
+# 运行
+`./main.sh exec elotus`
+进入目录后，自行用命令操作elotus
