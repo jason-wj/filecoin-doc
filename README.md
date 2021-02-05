@@ -4,6 +4,7 @@ filecoin相关，包括安装部署、原理文档等
 # 主机依赖环境
 1. docker
 2. docker-compose
+3. 下方涉及到的dockerfile可以在[my-dockerfile](https://github.com/jason-wj/my-dockerfile/tree/master/lotus) 查阅
 
 # lotus编译步骤
 1. 将源码放入`data-server/filecoin-blouts/lotus/`目录之中
