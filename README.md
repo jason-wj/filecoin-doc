@@ -12,6 +12,7 @@ filecoin相关，包括安装部署、原理文档等
 4. 确认在容器目录：`/go/src/github.com/filecoin-project/lotus`
 5. 执行：`/bin/bash -c "source /root/.cargo/env" && make build`或者`/bin/bash -c "source /root/.cargo/env" && make clean debug`或者`/bin/bash -c "source /root/.cargo/env" && make 2k`开始编译
     * 注意：一定要加上：`/bin/bash -c "source /root/.cargo/env"`
+    * 受限于网络，最好在网络环境好的地方操作
 6. 等待编译，编译完成后，即可在主机的`data-server/filecoin-blouts/lotus/`中看到编译成功的三个文件：`lotus`、`lotus-miner`、`lotus-worker`
 7. 安装：`make install`
 

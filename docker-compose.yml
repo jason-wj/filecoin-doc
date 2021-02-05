@@ -10,6 +10,9 @@ services:
     container_name: ${CONTAINER_BLOTUS}
     stdin_open: true
     tty: true
+    environment:
+      - CGO_CFLAGS_ALLOW="-D__BLST_PORTABLE__"
+      - CGO_CFLAGS="-D__BLST_PORTABLE__"
     privileged: true
     entrypoint: ["sh"]
     volumes:
@@ -32,8 +35,8 @@ services:
     volumes:
       - $ROOT_PATH/data-server/${CONTAINER_ELOTUS}/bin:/lotus/bin/
       - $ROOT_PATH/data-server/${CONTAINER_ELOTUS}/tmp:/var/tmp/
-      - $ROOT_PATH/data-server/${CONTAINER_ELOTUS}/lotusminerDevnet:~/.lotusminerDevnet
-      - $ROOT_PATH/data-server/${CONTAINER_ELOTUS}/lotusDevnet:~/.lotusDevnet
+      - $ROOT_PATH/data-server/${CONTAINER_ELOTUS}/lotusminerDevnet:/data/lotusminerDevnet
+      - $ROOT_PATH/data-server/${CONTAINER_ELOTUS}/lotusDevnet:/data/lotusDevnet
       - $ROOT_PATH/data-server/${CONTAINER_ELOTUS}/genesis-sectors:/root/.genesis-sectors/
     ports:
       - 1234:1234

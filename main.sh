@@ -63,7 +63,7 @@ function start_one() {
         ${COMMAND_ELOTUS})
             if [ ! -f "${ROOT_PATH}/data-server/filecoin-elotus/bin/lotus" ];then
                mkdir -p ${ROOT_PATH}/data-server/filecoin-elotus/bin/
-               cp ${ROOT_PATH}/data-server/filecoin-blotus/lotus/{lotus,lotus-miner,lotus-seed,lotus-worker} ${ROOT_PATH}/data-server/filecoin-elotus/bin/
+               cp -rf ${ROOT_PATH}/data-server/filecoin-blotus/lotus/{lotus,lotus-miner,lotus-seed,lotus-worker} ${ROOT_PATH}/data-server/filecoin-elotus/bin/
             fi
         ;;
     esac
